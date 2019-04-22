@@ -10,7 +10,8 @@ const EmailAlreadyExists = (email) => {
 const BadCredentials = (email, password) => {
   return {
     error: {
-      message: 'Credentials are invalid. Given email ' + email + ' and password ' + password + '.'
+      message: 'Credentials are invalid. Given email ' + email + ' and password ' + password + '.',
+      code: 2001
     }
   }
 };

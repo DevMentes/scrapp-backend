@@ -12,8 +12,12 @@ class LoginUserService {
 
     const foundedUser = await this.userRepository.byEmail(email);
 
-    if (!foundedUser || foundedUser.error){
-        return foundedUser;
+    if (foundedUser && foundedUser.error){
+      return foundedUser;
+    }
+
+    if (!foundedUser){
+      return domainErrors.BadCredentials(email, password);
     }
 
     if (!this.cryptographyAdapter.isSame(foundedUser.password, password)) {
@@ -21,8 +25,10 @@ class LoginUserService {
     }
 
     return {
-      id: foundedUser.id,
-      email: foundedUser.email
+      user: {
+        id: foundedUser.id,
+        email: foundedUser.email
+      }
     };
   }
 }
