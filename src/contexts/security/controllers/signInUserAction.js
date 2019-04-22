@@ -2,7 +2,7 @@ const { validationErrors } = require('./../errors/errors');
 const userRepository = require('./../repositories/userRepository');
 const LoginUserService = require('./../services/LoginUserService');
 const cryptographyAdapter = require('../adapters/cryptographyAdapter');
-
+const jwt = require('jsonwebtoken');
 
 module.exports = async (request, response) => {
 
@@ -31,7 +31,9 @@ module.exports = async (request, response) => {
     response.status(401).json(authenticatedUser);
   }
 
-  response.status(200).json(authenticatedUser);
+  response.status(201).json({
+    data: jwt.sign(authenticatedUser, process.env.jwt_secret, {expiresIn: process.env.jwt_expiration})
+  });
 };
 
 const emailIsValid = (email) => {
