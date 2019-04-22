@@ -12,6 +12,10 @@ module.exports = async (request, response) => {
     response.status(400).json(validationErrors.RequiredField('Email'))
   }
 
+  if (!emailIsValid(email)){
+    response.status(400).json(validationErrors.InvalidEmail(email));
+  }
+
   if (!password || password === '') {
     response.status(400).json(validationErrors.RequiredField('Password'));
   }
@@ -28,4 +32,10 @@ module.exports = async (request, response) => {
   }
 
   response.status(200).json(authenticatedUser);
+};
+
+const emailIsValid = (email) => {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+
 };

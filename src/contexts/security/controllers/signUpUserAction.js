@@ -11,6 +11,10 @@ const signUp = async (request, response) => {
     response.status(400).json(validationErrors.RequiredField('Email'))
   }
 
+  if (!emailIsValid(email)){
+    response.status(400).json(validationErrors.InvalidEmail(email));
+  }
+
   if (!password || password === ''){
     response.status(400).json(validationErrors.RequiredField('Password'));
   }
@@ -34,6 +38,12 @@ const signUp = async (request, response) => {
   response.status(201).json({
     data: createdUser
   });
+};
+
+const emailIsValid = (email) => {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+
 };
 
 module.exports = signUp;
