@@ -6,7 +6,7 @@ const crypt = (password) => {
 };
 
 const isSame = (userPassword, hashedPassword) => {
-  return bcrypt.compareSync(userPassword, hashedPassword);
+  return bcrypt.compareSync(hashedPassword, userPassword);
 };
 
 module.exports = {
