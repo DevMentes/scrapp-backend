@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 module.exports = new Sequelize(
   process.env.database_name,
   process.env.database_user,
-  process.env.database_pass,
+  process.env.database_password,
   {
     host: process.env.database_host,
     dialect: process.env.database_dialect,

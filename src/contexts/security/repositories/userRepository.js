@@ -1,4 +1,4 @@
-const { infrastructureError } = require('./../errors/errors');
+const { infrastructureErrors } = require('./../errors/errors');
 
 const User = require('./../models/User');
 
@@ -10,7 +10,7 @@ const byEmail = (email) => {
     })
     .catch(error => {
       return {
-        error: infrastructureError.DatabaseError(error)
+        error: infrastructureErrors.DatabaseError(error)
       }
     });
 };
@@ -26,7 +26,7 @@ const create = ({id, email, password}) => {
     })
     .catch(error => {
       return {
-        error: infrastructureError.DatabaseError(error)
+        error: infrastructureErrors.DatabaseError(error)
       }
     })
   ;
