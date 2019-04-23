@@ -1,3 +1,4 @@
+const validator = require('./../validations/validator');
 const { validationErrors } = require('./../errors/errors');
 const userRepository = require('./../repositories/userRepository');
 const cryptographyAdapter = require('../adapters/cryptographyAdapter');
@@ -7,19 +8,19 @@ const uuidGeneratorAdapter = require('./../adapters/uuidGeneratorAdapter');
 const signUp = async (request, response) => {
   const { email, password } = request.body;
 
-  if (!email || email === ''){
+  if (!validator.isSet(email)){
     response.status(400).json(validationErrors.RequiredField('Email'))
   }
 
-  if (!emailIsValid(email)){
+  if (!validator.emailIsValid(email)){
     response.status(400).json(validationErrors.InvalidEmail(email));
   }
 
-  if (!password || password === ''){
+  if (!validator.isSet(password)){
     response.status(400).json(validationErrors.RequiredField('Password'));
   }
 
-  if (password.length < 8){
+  if (!validator.emailIsValid(password)){
     response.status(400).json(validationErrors.InvalidPassword(password));
   }
 
@@ -38,12 +39,6 @@ const signUp = async (request, response) => {
   response.status(201).json({
     data: createdUser
   });
-};
-
-const emailIsValid = (email) => {
-  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-
 };
 
 module.exports = signUp;

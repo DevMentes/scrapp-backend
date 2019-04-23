@@ -1,22 +1,23 @@
+const jwt = require('jsonwebtoken');
+const validator = require('./../validations/validator');
 const { validationErrors } = require('./../errors/errors');
 const userRepository = require('./../repositories/userRepository');
 const LoginUserService = require('./../services/LoginUserService');
 const cryptographyAdapter = require('../adapters/cryptographyAdapter');
-const jwt = require('jsonwebtoken');
 
 module.exports = async (request, response) => {
 
   const {email, password} = request.body;
 
-  if (!email || email === '') {
+  if (!validator.isSet(email)) {
     response.status(400).json(validationErrors.RequiredField('Email'))
   }
 
-  if (!emailIsValid(email)){
+  if (!validator.emailIsValid(email)){
     response.status(400).json(validationErrors.InvalidEmail(email));
   }
 
-  if (!password || password === '') {
+  if (!validator.isSet(password)) {
     response.status(400).json(validationErrors.RequiredField('Password'));
   }
 
@@ -34,10 +35,4 @@ module.exports = async (request, response) => {
   response.status(201).json({
     data: jwt.sign(authenticatedUser, process.env.jwt_secret, {expiresIn: process.env.jwt_expiration})
   });
-};
-
-const emailIsValid = (email) => {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-
 };
