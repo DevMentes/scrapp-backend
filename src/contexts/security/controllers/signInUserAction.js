@@ -33,6 +33,8 @@ module.exports = async (request, response) => {
   }
 
   response.status(201).json({
-    data: jwt.sign(authenticatedUser, process.env.jwt_secret, {expiresIn: process.env.jwt_expiration})
+    data: {
+      token: jwt.sign(authenticatedUser, process.env.jwt_secret, {expiresIn: process.env.jwt_expiration})
+    }
   });
 };

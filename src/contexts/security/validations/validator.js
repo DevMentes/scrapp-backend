@@ -5,7 +5,7 @@ const emailIsValid = (email) => {
 };
 
 const isSet = (field) => {
-  return !field || field === '';
+  return field || field !== '';
 };
 
 const isValidPassword = (password) => {
