@@ -20,7 +20,7 @@ const signUp = async (request, response) => {
     response.status(400).json(validationErrors.RequiredField('Password'));
   }
 
-  if (!validator.emailIsValid(password)){
+  if (!validator.isValidPassword(password)){
     response.status(400).json(validationErrors.InvalidPassword(password));
   }
 
