@@ -9,6 +9,6 @@ router.post('/signup', securityController.signUp);
 
 router.post('/signin', securityController.signIn);
 
-router.patch('/account', middleware.validateToken, securityController.changePassword);
+router.patch('/password', middleware.validateToken, securityController.changePassword);
 
 module.exports = router;

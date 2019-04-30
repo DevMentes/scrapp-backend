@@ -1,4 +1,5 @@
 const User = require('./../models/User');
+
 const { infrastructureErrors } = require('./../errors/errors');
 
 const byEmail = (email) => {
