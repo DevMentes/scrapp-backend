@@ -35,7 +35,7 @@ module.exports = async (request, response) => {
 
   response.status(201).json({
     data: {
-      token: jwtAuthAdapter.generateToken({user: authenticatedUser}, config.token, {expiresIn: process.env.jwt_expiration})
+      token: jwtAuthAdapter.generateToken(authenticatedUser, config.secret, config.expiration)
     }
   });
 };

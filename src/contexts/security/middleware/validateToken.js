@@ -17,7 +17,7 @@ validateToken = (req, res, next) => {
     });
   }
 
-  const jwt = authorizationHeader.split( '')[1];
+  const jwt = authorizationHeader.split( ' ')[1];
 
   if (!jwt) {
     res.status(401).json({
@@ -25,16 +25,16 @@ validateToken = (req, res, next) => {
     });
   }
 
-  jwtAuthAdapter.validateToken(jwt, config.secret)
+  jwtAuthAdapter.validateToken(jwt, config.secret, config.expiration)
     .then((decodedToken) =>
     {
       req.user = decodedToken.data;
       next();
     })
-    .catch(() =>
+    .catch((error) =>
     {
       res.status(401)
-        .json({message: "Invalid auth token provided."})
+        .json({message: error})
     });
 };
 

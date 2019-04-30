@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const validateToken = (token, secret) => {
+
   return new Promise((resolve, reject) =>
   {
     jwt.verify(token, secret, (err, decodedToken) =>
@@ -10,13 +11,13 @@ const validateToken = (token, secret) => {
         return reject(err)
       }
 
-      resolve(decodedToken)
+      return resolve(decodedToken)
     })
   })
 };
 
-const generateToken = (payload, secret, config) => {
-    return jwt.sign(payload, secret, config);
+const generateToken = (payload, secret, expiration) => {
+    return jwt.sign(payload, secret, {expiresIn: expiration});
 };
 
 module.exports = {
