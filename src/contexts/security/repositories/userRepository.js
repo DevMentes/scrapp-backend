@@ -1,6 +1,5 @@
-const { infrastructureErrors } = require('./../errors/errors');
-
 const User = require('./../models/User');
+const { infrastructureErrors } = require('./../errors/errors');
 
 const byEmail = (email) => {
 
@@ -32,7 +31,33 @@ const create = ({id, email, password}) => {
   ;
 };
 
+const save = ({ id, email, password }) => {
+  return User.update({ email, password }, { where: { id: id} })
+    .then( updatedUser => {
+      return updatedUser;
+    } )
+    .catch( error => {
+      return {
+        error: infrastructureErrors.DatabaseError(error)
+      }
+    })
+};
+
+const byId = (id) => {
+  return User.findByPk(id)
+    .then(user => {
+      return user;
+    })
+    .catch(error => {
+      return {
+        error: infrastructureErrors.DatabaseError(error)
+      }
+    });
+};
+
 module.exports = {
   byEmail,
-  create
+  create,
+  byId,
+  save
 };

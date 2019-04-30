@@ -28,7 +28,7 @@ validateToken = (req, res, next) => {
   jwtAuthAdapter.validateToken(jwt, config.secret, config.expiration)
     .then((decodedToken) =>
     {
-      req.user = decodedToken.data;
+      req.user = decodedToken.user;
       next();
     })
     .catch((error) =>

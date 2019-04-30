@@ -16,8 +16,8 @@ const validateToken = (token, secret) => {
   })
 };
 
-const generateToken = (payload, secret, expiration) => {
-    return jwt.sign(payload, secret, {expiresIn: expiration});
+const generateToken = (payload, secret) => {
+    return jwt.sign(payload, secret);
 };
 
 module.exports = {
