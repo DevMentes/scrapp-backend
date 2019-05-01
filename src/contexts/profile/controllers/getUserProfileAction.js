@@ -12,6 +12,4 @@ module.exports = async (request, response) => {
   }
 
   response.status(200).json({data: { profile:loggedUser}});
-
-  response.status(200).json({message: 'testing this shet!'});
 };
