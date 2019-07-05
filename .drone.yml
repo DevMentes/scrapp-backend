@@ -6,7 +6,7 @@ steps:
     image: node:11-alpine
     commands:
       - npm install
-      - npm run jest
+      - npm run test
 
   - name: publish
     image: plugins/gcr
