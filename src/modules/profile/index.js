@@ -3,4 +3,4 @@ const profile = express();
 
 profile.use('/profile', require('./routes'));
 
-module.exports = profile;
+module.exports = security;

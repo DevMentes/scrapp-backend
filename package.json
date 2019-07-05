@@ -1,37 +1,40 @@
 {
-  "name": "scrapp-backend",
+  "name": "goodhunt",
   "version": "1.0.0",
-  "description": "api for scrapp agil project managemenet tool",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "server/www",
     "dev": "nodemon server/www",
-    "test": "test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GetColors/scrapp-backend.git"
+    "url": "git+ssh://git@gitlab.com/gudhant-team/goodhunt.git"
   },
-  "author": "Camilo Alaniz",
+  "author": "Camilo Alaniz, Nadia Gutiérrez, José Gutierrez",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GetColors/scrapp-backend/issues"
+    "url": "https://gitlab.com/gudhant-team/goodhunt/issues"
   },
-  "homepage": "https://github.com/GetColors/scrapp-backend#readme",
+  "homepage": "https://gitlab.com/gudhant-team/goodhunt#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "dotenv": "^7.0.0",
-    "express": "^4.16.4",
-    "helmet": "^3.16.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.11",
-    "pg": "^7.10.0",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^5.7.1",
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.8.9",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1"
   }
 }

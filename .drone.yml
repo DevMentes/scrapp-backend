@@ -1,0 +1,18 @@
+kind: pipeline
+name: scrapp-backend
+
+steps:
+  - name: test
+    image: node:11-alpine
+    commands:
+      - npm install
+      - npm run jest
+
+  - name: publish
+    image: plugins/gcr
+    settings:
+      repo: getcolors/scrapp-backend
+      dockerfile: Dockerfile
+      tags: latest
+      json_key:
+        from_secret: google_credentials
