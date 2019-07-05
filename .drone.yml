@@ -18,6 +18,7 @@ steps:
         from_secret: google_credentials
 
   - name: deploy
+    image: google/cloud-sdk:alpine
     only:
       - master
     script:
