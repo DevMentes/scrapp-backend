@@ -24,4 +24,4 @@ steps:
     script:
       - echo $google_credentials > /tmp/$CI_PIPELINE_ID.json
       - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
-      - gcloud --quiet --project getcolors app deploy production.yaml
+      - gcloud app deploy --image-url=gcr.io/getcolors/scrapp-backend:latest
