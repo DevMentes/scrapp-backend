@@ -19,6 +19,9 @@ steps:
 
   - name: deploy
     image: google/cloud-sdk:alpine
+    environment:
+      google_credentials:
+        from_secret: google_credentials
     commands:
       - echo $google_credentials > /tmp/$CI_PIPELINE_ID.json
       - cat /tmp/$CI_PIPELINE_ID.json
