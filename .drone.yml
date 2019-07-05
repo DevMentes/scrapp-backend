@@ -24,6 +24,3 @@ steps:
       - echo $google_credentials > /tmp/$CI_PIPELINE_ID.json
       - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
       - gcloud --quiet --project $PROJECT_ID app deploy staging-app.yaml
-
-  after_script:
-    - rm /tmp/$CI_PIPELINE_ID.json
