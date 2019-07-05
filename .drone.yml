@@ -19,10 +19,8 @@ steps:
 
   - name: deploy
     image: google/cloud-sdk:alpine
-    only:
-      - master
-    script:
+    commands:
       - echo $google_credentials > /tmp/$CI_PIPELINE_ID.json
       - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
-      - gcloud compute ssh goodhunt-backend
+      - gcloud compute ssh scrapp-backend
       - sudo docker run -d -p 80:3000 --restart always --env-file env.list gcr.io/getcolors/scrapp-backend:latest
