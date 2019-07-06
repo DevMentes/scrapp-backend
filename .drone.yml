@@ -22,12 +22,8 @@ steps:
     environment:
       google_credentials:
         from_secret: google_credentials
-      docker_user:
-        from_secret: docker_user
-      docker_password:
-        from_secret: docker_password
     commands:
       - echo $google_credentials > /tmp/$CI_PIPELINE_ID.json
       - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
-      - gcloud compute ssh scrapp-backend --zone us-east1-b --command "cat $google_credentials | sudo docker login -u _json_key --password-stdin https://gcr.io"
+      - gcloud compute ssh scrapp-backend --zone us-east1-b --command "cat /tmp/$CI_PIPELINE_ID.json | sudo docker login -u _json_key --password-stdin https://gcr.io"
       - gcloud compute ssh scrapp-backend --zone us-east1-b --command "sudo docker run -d -p 80:3000 --restart always --env-file ./../../env.list gcr.io/getcolors/scrapp-backend:latest"
