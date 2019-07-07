@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const middleware = require('./security/middleware/middleware');
+const validateToken = require('./../security/middleware/validateToken');
 
 const profileController = require('./controllers/profileController');
 
 router.get('/status',profileController.status);
 
-router.get('/', middleware.validateToken, profileController.status);
+router.get('/', validateToken, profileController.profile);
 
 module.exports = router;

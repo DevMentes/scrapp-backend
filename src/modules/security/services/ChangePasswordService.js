@@ -5,7 +5,6 @@ class ChangePasswordService {
   constructor(cryptographyAdapter, userRepository) {
     this.cryptographyAdapter = cryptographyAdapter;
     this.userRepository = userRepository;
-
   }
 
   async execute(user, oldPassword, newPassword) {
