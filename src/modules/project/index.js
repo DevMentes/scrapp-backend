@@ -1,6 +1,6 @@
 const express = require('express');
 const project = express();
 
-project.use('/project', require('./routes'));
+project.use('/projects', require('./routes'));
 
 module.exports = project;

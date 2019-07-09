@@ -5,6 +5,6 @@ const projectController = require('./controllers/projectController');
 
 router.get('/status',projectController.status);
 
-router.post('/projects', validateToken, projectController.getAll);
+router.get('/', validateToken, projectController.getAll);
 
 module.exports = router;

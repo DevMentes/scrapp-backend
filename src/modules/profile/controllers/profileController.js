@@ -8,9 +8,9 @@ const status = async (request, response) => {
 const profile = async (request, response) => {
 
     const service = new GetUserProfileUseCase(userRepository);
-    const loggedUser = request.user;
+    const logedUser = request.user;
 
-    const userProfile = await service.execute(loggedUser.id);
+    const userProfile = await service.execute(logedUser.id);
 
     if (userProfile.error) {
         response.status(401).json(userProfile);

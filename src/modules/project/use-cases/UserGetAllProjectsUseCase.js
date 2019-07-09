@@ -4,6 +4,6 @@ module.exports = class UserGetAllProjectsUseCase {
     }
 
     async execute(userId) {
-        return await this.userRepository.projects(userId);
+        return await this.userRepository.projectsOfUser(userId);
     }
 };
