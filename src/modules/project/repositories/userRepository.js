@@ -1,4 +1,11 @@
+const userModel = require('./../models/User');
+
 const projectsOfUser = async (userId) => {
+
+    const fountUser = userModel.findById(userId);
+
+    return fountUser.projects;
+
     return [
         {
             id: '123123123131',
